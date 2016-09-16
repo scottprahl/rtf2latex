@@ -82,6 +82,7 @@ print_usage(void)
     fprintf(stdout, "      -e 2              insert image\n");
     fprintf(stdout, "      -e 4              keep intermediate eqn file\n");
     fprintf(stdout, "      -e 8              insert eqn file name in latex document\n");
+    fprintf(stdout, "      -e 16             delimit eqns by \\(...\\) and \\[...\\]\n");
     fprintf(stdout, "  -n               natural latex formatting ... easiest to edit\n");
     fprintf(stdout, "  -p #             paragraph conversion options\n");
     fprintf(stdout, "      -p 1              'heading 1' style -> '\\section{}'\n");
@@ -281,6 +282,7 @@ main(int argc, char **argv)
 {
     char            c, *input_filename, *output_filename;
     int             fileCounter, cli_paragraph, cli_text, cli_equation, cli_table;
+    int             g_eqn_delim_brackets;
     long            cursorPos;
     extern char    *optarg;
     extern int      optind;
@@ -290,6 +292,13 @@ main(int argc, char **argv)
     cli_text = -1;
     cli_equation = -1;
     cli_table = -1;
+
+    g_eqn_delim_brackets = 0;
+    eqn_start_inline = strdup("$");
+    eqn_end_inline = strdup(" $");
+    eqn_start_display = strdup(" $$");
+    eqn_end_display = strdup("$$");
+
     while ((c = my_getopt(argc, argv, "bDe:fhnp:P:t:T:v")) != EOF) {
         switch (c) {
 
@@ -374,8 +383,15 @@ main(int argc, char **argv)
         g_eqn_insert_image      = cli_equation & 2;
         g_eqn_keep_file         = cli_equation & 4;
         g_eqn_insert_name       = cli_equation & 8;
+        g_eqn_delim_brackets    = cli_equation & 16;
     }
-
+    if  (g_eqn_delim_brackets) {
+        eqn_start_inline = strdup("\\(");
+        eqn_end_inline = strdup(" \\)");
+        eqn_start_display = strdup("\\[");
+        eqn_end_display = strdup(" \\]");
+        }
+    
     if (cli_table >= 0) {
         prefs[pConvertTableWidths]    = cli_table & 1;
         prefs[pConvertTableAlignment] = cli_table & 2;

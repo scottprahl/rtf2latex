@@ -1,3 +1,6 @@
+r287 | wh | 2016-09-16
+add option to delimit LaTeX equations by \(...\) and \[...\]
+
 r286 | prahl | 2013-04-09
 some fixes
 

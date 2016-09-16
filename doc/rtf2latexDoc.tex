@@ -14,9 +14,10 @@
   \href{#2}{#1}\footnote{\url{#2}}%
 }
 \title{\rtf2latex2e Documentation\\
-version 2.2.1} 
-\author{Ujwal S. Sathyam\\ Scott Prahl}
-\date{28 June 2012}
+version 2.2.3} 
+\author{Ujwal S. Sathyam, Scott Prahl\\ update to version 2.2.3 by Wilfried Hennings}
+
+\date{16 September 2016}
 
 \begin{document} 
 \maketitle
@@ -332,11 +333,12 @@ this particular equation then it is very handy to be able to access this
 equation directly.  So how do you know it was equation 33 and not equation 19?
 Use \texttt{-e 15} according to
 \begin{verbatim}
-  -e #             equation conversion options
-      -e1              convert to latex
-      -e2              insert image
-      -e4              keep intermediate eqn file
-      -e8              insert eqn file name in latex document
+  -e #        equation conversion options
+     -e1          convert to latex
+     -e2          insert image
+     -e4          keep intermediate eqn file
+     -e8          insert eqn file name in latex document
+     -e16         delimit eqn in latex (-e1) by brackets instead $ 
 \end{verbatim}
 Then in the converted document (or more likely the partially converted
 \texttt{file.ltx} document, insert a final \verb#\end{document}# so that
@@ -349,6 +351,10 @@ using
     prompt> rtf2latex2e file-eqn033.eqn
 \end{verbatim}
 and figuring out which one of the \texttt{MTEF} commands is getting mangled.
+
+By default, the \LaTeX{} equations are delimited by \verb#$$...$$# (display)
+or \verb#$...$# (inline). If 16 are added to the -e option,
+\verb#\[...\]# (display) or \verb#\(...\)# (inline) are used.  
 
 \subsection{Table conversion options}
 In an \texttt{RTF} document with tables, the tables have 
