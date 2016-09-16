@@ -639,12 +639,12 @@ static void setMathMode(MTEquation * eqn, int mode)
         case EQN_MODE_TEXT:
             break;
         case EQN_MODE_INLINE:
-            strcpy(s," $");
+            strcpy(s,eqn_end_inline);
             if (eqn->m_latex_end) free(eqn->m_latex_end);
             eqn->m_latex_end = strdup(s);
             break;     
         case EQN_MODE_DISPLAY:
-            strcpy(s," $$\n");
+            strcpy(s,eqn_end_display);
             if (eqn->m_latex_end) free(eqn->m_latex_end);
             eqn->m_latex_end = strdup(s);
             break;          
@@ -660,7 +660,7 @@ static void setMathMode(MTEquation * eqn, int mode)
         switch (eqn->m_mode) {
         case EQN_MODE_TEXT:
             if (eqn->m_latex_start) free(eqn->m_latex_start);
-            eqn->m_latex_start = strdup("$");
+            eqn->m_latex_start = strdup(eqn_start_inline);
             break;
         case EQN_MODE_INLINE:
             break;     
@@ -677,7 +677,7 @@ static void setMathMode(MTEquation * eqn, int mode)
         switch (eqn->m_mode) {
         case EQN_MODE_TEXT:
             if (eqn->m_latex_start) free(eqn->m_latex_start);
-            eqn->m_latex_start = strdup("$$");
+            eqn->m_latex_start = strdup(eqn_start_display);
             break;
         case EQN_MODE_INLINE:
             fprintf(stderr,"Bizarre case of switching from inline to display??\n");
