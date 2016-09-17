@@ -297,7 +297,7 @@ main(int argc, char **argv)
     eqn_start_inline = strdup("$");
     eqn_end_inline = strdup(" $");
     eqn_start_display = strdup(" $$");
-    eqn_end_display = strdup("$$");
+    eqn_end_display = strdup("$$\n");
 
     while ((c = my_getopt(argc, argv, "bDe:fhnp:P:t:T:v")) != EOF) {
         switch (c) {
@@ -389,7 +389,7 @@ main(int argc, char **argv)
         eqn_start_inline = strdup("\\(");
         eqn_end_inline = strdup(" \\)");
         eqn_start_display = strdup("\\[");
-        eqn_end_display = strdup(" \\]");
+        eqn_end_display = strdup(" \\]\n");
         }
     
     if (cli_table >= 0) {
