@@ -1,3 +1,6 @@
+r288 | wh | 2016-09-17
+add missing newline after display equation end
+
 r287 | wh | 2016-09-16
 add option to delimit LaTeX equations by \(...\) and \[...\]
 

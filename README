@@ -1,3 +1,6 @@
+Release 2-2-3 adds the option to delimit LaTeX equations 
+by \(...\) instead of $...$ and \[...\] instead of $$...$$
+
 Release 2-2-2 adds conversion of Word's EQ fields
 and fixes the missing -lm flag in the gcc compiler call in Makefile
 
